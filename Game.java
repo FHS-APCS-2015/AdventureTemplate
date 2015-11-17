@@ -59,6 +59,10 @@ public class Game {
      */
     public void handleCommand(String cmd) {
         if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
+        else if(cmd.contains("go left")) handleEvent(Game.KeyAction.LEFT);
+        else if(cmd.contains("go right")) handleEvent(Game.KeyAction.RIGHT);
+        else if(cmd.contains("go up")) handleEvent(Game.KeyAction.UP);
+        else if(cmd.contains("go down")) handleEvent(Game.KeyAction.DOWN);
         else
             display("I don't know what you mean...");
     }

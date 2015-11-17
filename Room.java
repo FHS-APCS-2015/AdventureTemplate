@@ -127,6 +127,12 @@ public class Room {
 		return isInRoom(loc.row, loc.col);
 	}
 
+
+	public void setRandomLocation(){
+		room[Player.getLocation().row][moveTo.col] = room[loc.row][loc.col]; // move thing
+		room[loc.row][loc.col] = Game.EMPTY; // old square empty
+	}
+	
 	// return a random location in the room
 	public Location getRandomLocation() {
 		return new Location((int) (Math.random() * height),
