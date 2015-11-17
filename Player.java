@@ -26,4 +26,15 @@ public class Player {
         
         return false;
     }
+    
+    public void moveToRandomDirection(){
+    	for(int i = 0; i < 10000; i ++){
+    		int rand = (int)(Math.random() *4);
+    		move(rand);
+    	}
+    }
+    
+    public Location getLocation(){
+    	return loc;
+    }
 }

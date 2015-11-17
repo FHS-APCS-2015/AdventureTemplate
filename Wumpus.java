@@ -3,9 +3,10 @@
  * 
  * @author David
  */
-public class Wumpus {
+public class Wumpus{
     private Room currentRoom;		// room the Wumpus is in
     private int row, col;			// the location of the wumpus in the room
+    
     
     public Wumpus(Room r) {
         currentRoom = r;      

@@ -108,6 +108,8 @@ public class Room {
 		room[moveTo.row][moveTo.col] = room[loc.row][loc.col]; // move thing
 		room[loc.row][loc.col] = Game.EMPTY; // old square empty
 	}
+	
+	
 
 	// return true if (row, col) is a valid location in the room
 	public boolean isInRoom(int row, int col) {
