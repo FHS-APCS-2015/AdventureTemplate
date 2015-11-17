@@ -26,4 +26,11 @@ public class Player {
         
         return false;
     }
+    
+    public void randomMove(){
+    	for(int i = 0; i < 1000; i++){
+    		int direction = (int)(Math.random()*4);
+    		move(direction);
+    	}
+    }
 }

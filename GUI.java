@@ -132,6 +132,7 @@ public class GUI extends javax.swing.JFrame implements KeyListener {
             output.append("\n> " + jTextField1.getText() + "\n" );
             jTextField1.setText("");
             game.handleCommand(command);
+            this.roomDisplay.setText(game.getCurrentRoom().toString());
         }
     }//GEN-LAST:event_jTextField1KeyTyped
 

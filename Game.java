@@ -59,6 +59,13 @@ public class Game {
      */
     public void handleCommand(String cmd) {
         if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
+        if (cmd.contains("go left")) player.move(Location.WEST);
+        if (cmd.contains("go right")) player.move(Location.EAST);
+        if (cmd.contains("go up")) player.move(Location.NORTH);
+        if (cmd.contains("go down")) player.move(Location.SOUTH);
+        if (cmd.contains("escape")) player.randomMove();
+        if (cmd.contains("wumpus be my friend")) display("wumpus hates everyone");
+        
         else
             display("I don't know what you mean...");
     }
