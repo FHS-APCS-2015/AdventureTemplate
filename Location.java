@@ -1,4 +1,5 @@
 /**
+ * 
  * A class representing a location.  This class is just a container to store a row and column.
  * It has two uses.
  * 

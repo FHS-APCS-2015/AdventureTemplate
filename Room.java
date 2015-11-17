@@ -9,7 +9,8 @@
 public class Room {
 	private int[][] room; 					// 2d grid for the room
 	private static String[] displaySymbols = { ".", "*", "X", "W" };
-	private int width, height;
+	private static int width;
+	private static int height;
 	private String longDescription;
 	private String shortDescription;
 
@@ -128,7 +129,7 @@ public class Room {
 	}
 
 	// return a random location in the room
-	public Location getRandomLocation() {
+	public static Location getRandomLocation() {
 		return new Location((int) (Math.random() * height),
 				(int) (Math.random() * width));
 	}
