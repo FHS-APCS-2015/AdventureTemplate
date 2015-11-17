@@ -6,6 +6,8 @@
 public class Player {
     private Room currentRoom;				// room player is in
     private Location loc;					// location of the player in the room
+    private final int PLAYER = 1;			// game constant for player
+    private final int EMPTY = 0;			//game constant for empty location
     
     public Player(Room r) {
         currentRoom = r;
@@ -25,5 +27,16 @@ public class Player {
         }
         
         return false;
+    }
+    
+    public void randomTeleport(){
+    	Location newLoc;
+    	do{
+		newLoc = currentRoom.getRandomLocation();
+    	}while(!currentRoom.isEmpty(newLoc));
+		currentRoom.put(newLoc.row, newLoc.col, PLAYER);
+		currentRoom.put(loc.row, loc.col, EMPTY);
+		loc = newLoc;
+		
     }
 }
