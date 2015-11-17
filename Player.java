@@ -26,4 +26,17 @@ public class Player {
         
         return false;
     }
+    
+    public boolean RandomMove(){
+    	 Location moveTo = currentRoom.getRandomLocation();
+    	if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
+    		int direction = (int)Math.random()*4;
+            currentRoom.moveElementAt(loc, direction);
+
+            loc = moveTo;   // update own location
+            return true;
+        }
+        
+        return false;
+    }
 }
