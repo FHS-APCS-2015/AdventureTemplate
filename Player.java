@@ -26,4 +26,12 @@ public class Player {
         
         return false;
     }
+  
+
+	public void moveRand(){
+    	
+		loc = currentRoom.getRandomLocation();
+    	 	
+    }
+
 }

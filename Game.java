@@ -35,7 +35,8 @@ public class Game {
     /**
      * Performs the appropriate action in response to a keyboard press action.
      * 
-     * @param the key that was pressed which we want to perform an action for.
+     * @param the key that was pressed which we want to p
+     * erform an action for.
      */
     public void handleEvent(KeyAction e) {
         if (e == KeyAction.RIGHT) {
@@ -58,9 +59,21 @@ public class Game {
      * @param cmd the string the user typed at the game console.
      */
     public void handleCommand(String cmd) {
-        if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
-        else
+    	 if(cmd.contains("go left")) player.move(Location.WEST);
+    	 else
+    	 if(cmd.contains("go right")) player.move(Location.EAST);
+    	 else
+    	 if(cmd.contains("go down")) player.move(Location.SOUTH);
+    	 else
+    	 if(cmd.contains("go up")) player.move(Location.NORTH);
+    	 else
+    	 if(cmd.contains("escape")) player.moveRand();
+    	 else
+    	 if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
+         else
             display("I don't know what you mean...");
+       
+    	 
     }
     
     private void displayWelcome() {
