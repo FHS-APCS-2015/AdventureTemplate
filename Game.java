@@ -19,7 +19,7 @@ public class Game {
     
     private Room currentRoom;
     private Player player;
-    private Wumpus enemy;
+    private Wumpus wumpus;
    
     private JTextArea display;
 
@@ -27,7 +27,7 @@ public class Game {
         this.display = display;
         currentRoom = new Room(60, 20);
         player = new Player(currentRoom);
-        enemy = new Wumpus(currentRoom);
+        wumpus = new Wumpus(currentRoom);
         
         displayWelcome();
     }
@@ -50,6 +50,7 @@ public class Game {
         if (e == KeyAction.DOWN) {
             player.move(Location.SOUTH);
         }
+        wumpus.randomMove();
     }
     
     /**
@@ -58,9 +59,23 @@ public class Game {
      * @param cmd the string the user typed at the game console.
      */
     public void handleCommand(String cmd) {
-        if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
+    	cmd = cmd.toLowerCase();
+    	if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
+        else
+        	if (cmd.contains("left")|| cmd.contains("west")) handleEvent(KeyAction.LEFT);
+        	else
+            	if (cmd.contains("right")|| cmd.contains("east")) handleEvent(KeyAction.RIGHT);
+            	else
+                	if (cmd.contains("down")|| cmd.contains("south")) handleEvent(KeyAction.DOWN);
+                	else
+                    	if (cmd.contains("up")|| cmd.contains("north")) handleEvent(KeyAction.UP);
+                    	else
+                        	if (cmd.contains("escape")) handleEvent(KeyAction.UP);
         else
             display("I don't know what you mean...");
+    	
+    	wumpus.randomMove();
+    	
     }
     
     private void displayWelcome() {
