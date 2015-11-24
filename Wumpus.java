@@ -7,13 +7,47 @@ public class Wumpus {
     private Room currentRoom;		// room the Wumpus is in
     private int row, col;			// the location of the wumpus in the room
     
+    public int getRow() {
+    	return row;
+    }
+    
+    public int getCol() {
+    	return col;
+    }
     public Wumpus(Room r) {
         currentRoom = r;      
         row = 6;
         col = 8;
-        currentRoom.put(row, col, 3);			// THIS IS BAD.  WHY?
+        currentRoom.put(row, col, Game.WUMPUS);			// THIS IS BAD.  WHY?
     }
     
+	/*public int directionTo(Player p){
+    	int direction = 0, greatestDist=0;
+    	if(r.getRow() > loc.row && Math.abs(r.getRow()-loc.row) > greatestDist) {
+    		direction = Location.NORTH;
+    		greatestDist = Math.abs(r.getRow()-loc.row);
+    	}
+    	if(r.getRow() < loc.row && Math.abs(r.getRow()-loc.row) > greatestDist) {
+    		direction = Location.SOUTH;
+    		greatestDist = Math.abs(r.getRow()-loc.row);
+    	}
+    	if(r.getCol() > loc.col && Math.abs(r.getCol()-loc.col) > greatestDist) {
+    		direction = Location.EAST;
+    		greatestDist = Math.abs(r.getCol()-loc.col);
+    	}
+    	if(r.getCol() < loc.col && Math.abs(r.getCol()-loc.col) > greatestDist) {
+    		direction = Location.WEST;
+    		greatestDist = Math.abs(r.getCol()-loc.col);
+    	}
+    	return direction;
+    }*/
+
+    public void flash(){
+		move(Location.EAST);
+		move(Location.WEST);
+		move(Location.EAST);
+		move(Location.WEST);
+    }
     // returns true if enemy was able to move in that direction.
     public boolean move(int direction) {
         int newrow = row;
@@ -35,8 +69,14 @@ public class Wumpus {
         return false;
     }
     
+    
     public void randomMove() {
-        // you can fill this one
-        return;
+        int random = (int)(Math.random()*4);
+        move(random);
+    }
+    
+    // happens when we call the attack command
+    public void disappear() {
+    	currentRoom.put(row, col, Game.EMPTY);
     }
 }
