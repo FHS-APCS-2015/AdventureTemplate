@@ -58,6 +58,7 @@ public class Game {
      * @param cmd the string the user typed at the game console.
      */
     public void handleCommand(String cmd) {
+    	cmd = cmd.toLowerCase();
         if(cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
         else if(cmd.contains("escape")) player.randomTeleport();
         else if(cmd.contains("go right"))player.move(Location.EAST);
@@ -70,6 +71,11 @@ public class Game {
             	display("You attacked the Wumpus!!");	
         	}else
         		display("You can't attck the Wumpus right now...");	
+        }
+        else if(cmd.contains("love wumpus")){
+        	if(player.isAdjacent(enemy)){
+        		player.loveWumpus(enemy);
+        	}
         }
         
         else

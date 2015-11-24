@@ -150,4 +150,7 @@ public class Room {
 	public int getRandomDirection(){
 		return (int)(Math.random()*3);
 	}
+	/*public Location getAdjacentLocation(Location loc){
+		int rowDisplace = 
+	}*/
 }

@@ -3,27 +3,23 @@
  * 
  * @author David
  */
-public class Player extends GameToken{
+public class Player extends Animate{
 
 	public Player(Room r) {
 		super(r, Game.PLAYER);
 	}
 	
-	public Player(Room r, int row, int col){
-		super(r, row, col, Game.PLAYER);
+	public Player(Room r, Location loc){
+		super(r, loc, Game.PLAYER);
 	}
 
-	public void randomTeleport() {
-		Location newLoc = currentRoom.getRandomEmptyLocation();
-		currentRoom.moveObject(loc, newLoc);
-		this.loc = newLoc;
-	}
 	
 	public void attackWumpus(Wumpus wumpus){
 		wumpus.randomMove();
 	}
 	
-	public void loveWumpus(){
+	public void loveWumpus(Wumpus parentWumpus){
+		int direction = (int)(Math.random()*8);
 		
 	}
 	

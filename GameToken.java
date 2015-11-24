@@ -8,25 +8,10 @@ public class GameToken {
 		loc = currentRoom.getRandomEmptyLocation();
 		currentRoom.put(loc.row, loc.col, tokenType);
 	}
-	public GameToken(Room r, int row, int col, int tokenType) {
+	public GameToken(Room r, Location l, int tokenType) {
 		currentRoom = r;
-		loc = new Location(row, col);
+		loc = l;
 		currentRoom.put(loc.row, loc.col, tokenType);
-	}
-
-
-	// returns true if player was able to move in that direction.
-	public boolean move(int direction) {
-		Location moveTo = Location.locationInDirection(loc, direction);
-
-		if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
-			currentRoom.moveElementAt(loc, direction);
-
-			loc = moveTo; // update own location
-			return true;
-		}
-		
-		return false;
 	}
 	
 	/*
@@ -54,6 +39,17 @@ public class GameToken {
 		return false;
 	}
 	
+	public void setLocation(Location newLoc){
+		int tokenType = 0;
+		if(loc != null){
+			tokenType = currentRoom.get(loc.row, loc.col);
+			currentRoom.put(loc.row, loc.col, Game.EMPTY);
+		}
+		currentRoom.put(newLoc.row, newLoc.col, tokenType);
+		this.loc = newLoc;
+		
+	}
+	
 	public Location getLocation(){
 		return loc;
 	}
@@ -66,8 +62,5 @@ public class GameToken {
 		return loc.col;
 	}
 	
-	public int getDirectionTo(GameToken target){
-		
-	}
 
 }
