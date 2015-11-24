@@ -126,16 +126,15 @@ public class Room {
 	public boolean isInRoom(Location loc) {
 		return isInRoom(loc.row, loc.col);
 	}
-
-
-	public void setRandomLocation(){
-		room[Player.getLocation().row][moveTo.col] = room[loc.row][loc.col]; // move thing
-		room[loc.row][loc.col] = Game.EMPTY; // old square empty
-	}
 	
 	// return a random location in the room
 	public Location getRandomLocation() {
 		return new Location((int) (Math.random() * height),
 				(int) (Math.random() * width));
+	}
+	
+	public boolean areAdjacent(Player p, Wumpus w) {
+		if(p.getDistanceTo(w) == 1) return true;
+		return false; 
 	}
 }
