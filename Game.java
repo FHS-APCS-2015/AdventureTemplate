@@ -58,11 +58,27 @@ public class Game {
      * @param cmd the string the user typed at the game console.
      */
     public void handleCommand(String cmd) {
-        if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
+        if (cmd.contains("look")){
+        	display("DON'T TOUCH THE WUMPUS!!");
+        	enemy.flash();
+        }
         else if(cmd.contains("go left")) handleEvent(Game.KeyAction.LEFT);
         else if(cmd.contains("go right")) handleEvent(Game.KeyAction.RIGHT);
         else if(cmd.contains("go up")) handleEvent(Game.KeyAction.UP);
         else if(cmd.contains("go down")) handleEvent(Game.KeyAction.DOWN);
+        else if(cmd.contains("run")) {
+        
+        }
+        else if(cmd.contains("escape")) {
+        	player.escape(); 
+        	enemy.randomMove();
+        }
+        else if(cmd.contains("attack")) {
+        	if(currentRoom.areAdjacent(player, enemy)) {
+        			enemy.disappear();
+        			display("ATTACK SUCCESSFUL!!!!");  
+        	}
+        }
         else
             display("I don't know what you mean...");
     }
