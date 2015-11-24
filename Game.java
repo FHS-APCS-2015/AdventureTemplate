@@ -59,11 +59,34 @@ public class Game {
      */
     public void handleCommand(String cmd) {
         if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
-        if(cmd.contains("go left")) player.move(Location.WEST);
-        if(cmd.contains("go right")) player.move(Location.EAST);
-        if(cmd.contains("go up")) player.move(Location.NORTH);
-        if(cmd.contains("go down")) player.move(Location.SOUTH);
-        if(cmd.contains("escape")) player.moveToRandomDirection();
+        else if(cmd.contains("go left")) player.move(Location.WEST);
+        else if(cmd.contains("go right")) player.move(Location.EAST);
+        else if(cmd.contains("go up")) player.move(Location.NORTH);
+        else if(cmd.contains("go down")) player.move(Location.SOUTH);
+        else if(cmd.contains("escape")) player.moveToRandomDirection();
+        else if(cmd.contains("attack") && currentRoom.areAdjacent(player, enemy)) display("pew pew");
+        else if(cmd.contains("slide to the left")){
+        	player.moveToTheWall(Location.WEST);
+        	enemy.moveToRandomDirection();
+        }
+        else if(cmd.contains("slide to the right")){
+        	player.moveToTheWall(Location.EAST);
+        	enemy.moveToRandomDirection();
+        }
+        else if(cmd.contains("slide to the up")){
+        	player.moveToTheWall(Location.NORTH);
+        	enemy.moveToRandomDirection();
+        }
+        else if(cmd.contains("slide to the down")){
+        	player.moveToTheWall(Location.SOUTH);
+        	enemy.moveToRandomDirection();
+        }
+        else if(cmd.contains("everybody clap yo hands")){
+        	int randRow = (int)(Math.random()* currentRoom.getHeight() - 2);
+        	int randCol = (int)(Math.random() * currentRoom.getWidth() - 2);
+        	currentRoom.put(enemy.getRow(), enemy.getRow(), Game.EMPTY);
+        	currentRoom.put(randRow, randCol, Game.WUMPUS);
+        }
         else
             display("I don't know what you mean...");
     }

@@ -46,6 +46,35 @@ public class Room {
 			return Game.INVALID;
 		}
 	}
+	
+	public Location getWumpusLocation(){
+		Location n = new Location(0, 0);
+		
+		for(int row = 0; row < width; row ++){
+			for(int col = 0; col < height; col ++){
+				Location l = new Location(row, col);
+				if(get(row, col) == Game.WUMPUS) return l;
+			}
+		}
+		
+		return n;
+		
+		
+	}
+	
+	public Location getPlayerLocation(){
+		Location n = new Location(0, 0);
+		
+		for(int row = 0; row < width; row ++){
+			for(int col = 0; col < height; col ++){
+				Location l = new Location(row, col);
+				if(get(row, col) == Game.PLAYER) return l;
+			}
+		}
+		
+		return n;
+		
+	}
 
 	/**
 	 * Put a new value into the room grid at (row, col).  Possible values include
@@ -133,5 +162,16 @@ public class Room {
 	public Location getRandomLocation() {
 		return new Location((int) (Math.random() * height),
 				(int) (Math.random() * width));
+	}
+	
+	public boolean areAdjacent(Player p, Wumpus w){
+		
+		if((w.getRow() - p.getRow()) == 0 || (w.getCol() - p.getCol()) == 0) {
+			if( Math.abs(w.getRow() - p.getRow()) == 4 || Math.abs(w.getCol() - p.getCol()) == 4) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
