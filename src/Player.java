@@ -3,18 +3,16 @@
  * 
  * @author David
  */
-public class Player {
-    private Room currentRoom;				// room player is in
-    private Location loc;					// location of the player in the room
+public class Player extends Animate {
     
-    public Player(Room r) {
-        currentRoom = r;
+    public Player(Room r, Location l) {
+        super(r, l);
         loc = new Location(currentRoom.getHeight()/2, currentRoom.getWidth()/2);
         currentRoom.put(loc.row, loc.col, Game.PLAYER);
     }
     
     // returns true if player was able to move in that direction.
-    public boolean move(int direction) {
+   /* public boolean move(int direction) {
         Location moveTo = Location.locationInDirection(loc, direction);
         
         if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
@@ -25,14 +23,9 @@ public class Player {
         }
         
         return false;
-    }
+    }*/
     
-    public void moveToRandomDirection(){
-    	for(int i = 0; i < 10000; i ++){
-    		int rand = (int)(Math.random() *4);
-    		move(rand);
-    	}
-    }
+   
     
     public void moveToTheWall(int d) { 
     	int oldr = getRow();

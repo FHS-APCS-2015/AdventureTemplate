@@ -26,7 +26,7 @@ public class Game {
     public Game(JTextArea display) {
         this.display = display;
         currentRoom = new Room(60, 20);
-        player = new Player(currentRoom);
+        player = new Player(currentRoom, );
         enemy = new Wumpus(currentRoom);
         
         displayWelcome();

@@ -40,4 +40,15 @@ public class Location {
         public int getCol(){
         	return col;
         }
+        
+        public void setRow(int r){
+        	
+        }
+        
+        public void setCol(int c){
+        	
+        }
+       
+        
+        
 }
