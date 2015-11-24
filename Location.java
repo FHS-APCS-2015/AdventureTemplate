@@ -12,7 +12,7 @@
  * @author David
  */
 public class Location {
-        public static final int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;
+        public static final int NORTH = 0, NORTHEAST = 1, EAST = 2, SOUTHEAST = 3, SOUTH = 4, SOUTHWEST = 5, WEST = 6, NORTHWEST = 7;
         public int row, col;
         
         public Location(int r, int c) {

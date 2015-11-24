@@ -59,11 +59,18 @@ public class Game {
      */
     public void handleCommand(String cmd) {
         if(cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
-        if(cmd.contains("escape")) player.randomTeleport();
-        if(cmd.contains("go right"))player.move(Location.EAST);
-        if(cmd.contains("go left"))	player.move(Location.WEST);
-        if(cmd.contains("go down")) player.move(Location.SOUTH);
-        if(cmd.contains("go up"))	player.move(Location.NORTH);
+        else if(cmd.contains("escape")) player.randomTeleport();
+        else if(cmd.contains("go right"))player.move(Location.EAST);
+        else if(cmd.contains("go left"))	player.move(Location.WEST);
+        else if(cmd.contains("go down")) player.move(Location.SOUTH);
+        else if(cmd.contains("go up"))	player.move(Location.NORTH);
+        else if(cmd.contains("attack wumpus")){
+        	if(player.isAdjacent(enemy)){
+        		player.attackWumpus(enemy);
+            	display("You attacked the Wumpus!!");	
+        	}else
+        		display("You can't attck the Wumpus right now...");	
+        }
         
         else
             display("I don't know what you mean...");

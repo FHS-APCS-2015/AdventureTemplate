@@ -132,4 +132,22 @@ public class Room {
 		return new Location((int) (Math.random() * height),
 				(int) (Math.random() * width));
 	}
+	
+	public Location getRandomEmptyLocation(){
+		Location newLoc;
+		do {
+			newLoc = getRandomLocation();
+		} while (!isEmpty(newLoc));
+		
+		return newLoc;
+	}
+	
+	public void moveObject(Location loc, Location newLoc){
+		put(newLoc.row, newLoc.col, Game.PLAYER);
+		put(loc.row, loc.col, Game.EMPTY);
+	}
+	
+	public int getRandomDirection(){
+		return (int)(Math.random()*3);
+	}
 }
