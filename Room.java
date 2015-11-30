@@ -7,7 +7,7 @@
  * @author David
  */
 public class Room {
-	private int[][] room; 					// 2d grid for the room
+	private int[][] room; // 2d grid for the room
 	private static String[] displaySymbols = { ".", "*", "X", "W" };
 	private int width, height;
 	private String longDescription;
@@ -32,11 +32,13 @@ public class Room {
 	}
 
 	/**
-	 * Returns the value of (row, col) in the room.  Possible values include
+	 * Returns the value of (row, col) in the room. Possible values include
 	 * Game.WUMPUS, Game.WALL, Game.PLAYER, Game.EMPTY, Game.INVALID
 	 * 
-	 * @param row the row in the room grid
-	 * @param col the column in the room grid
+	 * @param row
+	 *            the row in the room grid
+	 * @param col
+	 *            the column in the room grid
 	 * @return what is at that location in the room.
 	 */
 	public int get(int row, int col) {
@@ -48,12 +50,15 @@ public class Room {
 	}
 
 	/**
-	 * Put a new value into the room grid at (row, col).  Possible values include
+	 * Put a new value into the room grid at (row, col). Possible values include
 	 * Game.WUMPUS, Game.WALL, Game.PLAYER, Game.EMPTY
 	 * 
-	 * @param row the row to place the new value 
-	 * @param col the column to place the new value
-	 * @param value the value to be placed at (row, col)
+	 * @param row
+	 *            the row to place the new value
+	 * @param col
+	 *            the column to place the new value
+	 * @param value
+	 *            the value to be placed at (row, col)
 	 */
 	public void put(int row, int col, int value) {
 		if (isInRoom(row, col))
@@ -61,8 +66,8 @@ public class Room {
 	}
 
 	/**
-	 * Return a string representation for the room.  This is what actually
-	 * gets displayed by the GUI class and what the user sees.
+	 * Return a string representation for the room. This is what actually gets
+	 * displayed by the GUI class and what the user sees.
 	 */
 	public String toString() {
 		StringBuilder b = new StringBuilder();
@@ -129,28 +134,36 @@ public class Room {
 
 	// return a random location in the room
 	public Location getRandomLocation() {
-		return new Location((int) (Math.random() * height),
-				(int) (Math.random() * width));
+		return new Location((int) (Math.random() * height), (int) (Math.random() * width));
 	}
-	
-	public Location getRandomEmptyLocation(){
+
+	public Location getRandomEmptyLocation() {
 		Location newLoc;
 		do {
 			newLoc = getRandomLocation();
 		} while (!isEmpty(newLoc));
-		
+
 		return newLoc;
 	}
-	
-	public void moveObject(Location loc, Location newLoc){
+
+	public void moveObject(Location loc, Location newLoc) {
 		put(newLoc.row, newLoc.col, Game.PLAYER);
 		put(loc.row, loc.col, Game.EMPTY);
 	}
-	
-	public int getRandomDirection(){
-		return (int)(Math.random()*3);
+
+	public int getRandomDirection() {
+		return (int) (Math.random() * 3);
 	}
-	/*public Location getAdjacentLocation(Location loc){
-		int rowDisplace = 
-	}*/
+
+	public Location getAdjacentLocation(Location loc) {
+		int rowDisplace = 0;
+		int colDisplace = 0;
+		do {
+			rowDisplace = (int) (Math.random() * 2 - 1);
+			colDisplace = (int) (Math.random() * 2 - 1);
+		} while (rowDisplace == 0 && colDisplace == 0);
+		
+		Location adjLoc = new Location(loc.row + rowDisplace, loc.col + colDisplace);
+		return adjLoc;
+	}
 }
