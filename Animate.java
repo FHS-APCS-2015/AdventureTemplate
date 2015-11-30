@@ -50,5 +50,5 @@ public class Animate extends Entity {
 			greatestDist = Math.abs(loc.col - this.loc.col);
 		}
 		move(direction);
-	}
+	}	
 }
