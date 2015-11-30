@@ -13,22 +13,25 @@ public class Wumpus {
         col = 8;
         currentRoom.put(row, col, 3);			// THIS IS BAD.  WHY?
     }
+
+    	
+    
     
     // returns true if enemy was able to move in that direction.
     public boolean move(int direction) {
-        int newrow = row;
-        int newcol = col;
+        int newRow = row;
+        int newCol = col;
         
-        if (direction == Location.NORTH) newrow--;
-        if (direction == Location.SOUTH) newrow++;
-        if (direction == Location.EAST) newcol++;
-        if (direction == Location.WEST) newcol--;
+        if (direction == Location.NORTH) newRow--;
+        if (direction == Location.SOUTH) newRow++;
+        if (direction == Location.EAST) newCol++;
+        if (direction == Location.WEST) newCol--;
         
-        if (currentRoom.isEmpty(newrow, newcol)) {
+        if (currentRoom.isEmpty(newRow, newCol)) {
             currentRoom.put(row, col, 0);
-            currentRoom.put(newrow, newcol, 3);
-            row = newrow;
-            col = newcol;
+            currentRoom.put(newRow, newCol, 3);
+            row = newRow;
+            col = newCol;
             return true;
         }
         

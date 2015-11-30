@@ -13,7 +13,7 @@
  */
 public class Location {
         public static final int NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;
-        public int row, col;
+        private int row, col;
         
         public Location(int r, int c) {
             row = r;
@@ -31,5 +31,12 @@ public class Location {
             if (direction == WEST) n.col--;
             
             return n;
+        }
+        
+        public int getRow(){
+        	return row;
+        }
+        public int getCol(){
+        	return col;
         }
 }

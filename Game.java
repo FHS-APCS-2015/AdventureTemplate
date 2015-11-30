@@ -81,10 +81,15 @@ public class Game {
 			player.move(Location.SOUTH);
 		}
 		
-//		 else if (cmd.contains("escape")) {
-//			display("AAAAAAAAAAAAAAAHHHHHHHHHH!!!!!!");
-//			currentRoom.put((int)Math.random()*, col, value);
-//		 }
+		 else if (cmd.contains("escape")) {
+			display("AAAAAAAAAAAAAAAHHHHHHHHHH!!!!!!");
+			player.escape();
+			
+		 }
+		 else if (cmd.contains("love")){
+			 Player.attack();
+			 
+		 }
 
 
 		else
@@ -105,4 +110,7 @@ public class Game {
 	public Room getCurrentRoom() {
 		return currentRoom;
 	}
+	
+		
+	
 }
