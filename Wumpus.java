@@ -36,7 +36,12 @@ public class Wumpus {
     }
     
     public void randomMove() {
-        // you can fill this one
-        return;
+       int d = (int)(Math.random()*4);
+       move(d);
+    }
+    public void chasePlayer(Player p){
+    	int prow = p.getLoc().getRow();
+    	int pcol = p.getLoc().getCol();
+    	
     }
 }

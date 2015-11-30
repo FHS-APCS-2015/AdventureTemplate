@@ -40,15 +40,19 @@ public class Game {
     public void handleEvent(KeyAction e) {
         if (e == KeyAction.RIGHT) {
             player.move(Location.EAST);
+            enemy.randomMove();
         }
         if (e == KeyAction.LEFT) {
             player.move(Location.WEST);
+            enemy.randomMove();
         }
         if (e == KeyAction.UP) {
             player.move(Location.NORTH);
+            enemy.randomMove();
         }
         if (e == KeyAction.DOWN) {
             player.move(Location.SOUTH);
+            enemy.randomMove();
         }
     }
     
@@ -59,8 +63,15 @@ public class Game {
      */
     public void handleCommand(String cmd) {
         if (cmd.contains("look")) display("DON'T TOUCH THE WUMPUS!!");
-        else
-            display("I don't know what you mean...");
+//        else
+//            display("I don't know what you mean...");
+        if (cmd.contains("left")) player.move(Location.WEST);
+        if (cmd.contains("teleport")){
+        	player.teleport();
+        	}
+        if (cmd.contains("attack")){
+        	player.attack();
+        }
     }
     
     private void displayWelcome() {

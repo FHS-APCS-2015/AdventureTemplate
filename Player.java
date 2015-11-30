@@ -9,21 +9,43 @@ public class Player {
     
     public Player(Room r) {
         currentRoom = r;
-        loc = new Location(currentRoom.getHeight()/2, currentRoom.getWidth()/2);
-        currentRoom.put(loc.row, loc.col, Game.PLAYER);
+        setLoc(new Location(currentRoom.getHeight()/2, currentRoom.getWidth()/2));
+        currentRoom.put(getLoc().row, getLoc().col, Game.PLAYER);
     }
     
     // returns true if player was able to move in that direction.
     public boolean move(int direction) {
-        Location moveTo = Location.locationInDirection(loc, direction);
+        Location moveTo = Location.locationInDirection(getLoc(), direction);
         
         if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
-            currentRoom.moveElementAt(loc, direction);
+            currentRoom.moveElementAt(getLoc(), direction);
 
-            loc = moveTo;   // update own location
+            setLoc(moveTo);   // update own location
             return true;
         }
         
         return false;
     }
+
+	public Location getLoc() {
+		return loc;
+	}
+
+	public void setLoc(Location loc) {
+		this.loc = loc;
+	}
+
+	public void teleport() {
+		Location newLoc = currentRoom.getRandomLocation();
+		
+		currentRoom.moveEntity(loc, newLoc);
+		this.loc = newLoc;
+		
+	}
+	public void attack(){
+		if(currentRoom.searchAdjacent(loc) == Game.WUMPUS){
+			
+		}
+		
+	}
 }

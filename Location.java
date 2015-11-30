@@ -32,4 +32,10 @@ public class Location {
             
             return n;
         }
+        public int getRow(){
+        	return row;
+        }
+        public int getCol(){
+        	return col;
+        }
 }

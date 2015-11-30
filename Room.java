@@ -132,4 +132,22 @@ public class Room {
 		return new Location((int) (Math.random() * height),
 				(int) (Math.random() * width));
 	}
+
+	public void moveEntity(Location from, Location to) {
+		room[to.row][to.col] = room[from.row][from.col];
+		room[from.row][from.col] = Game.EMPTY;
+	}
+	public int searchAdjacent(Location loc){
+		for(int i = loc.row - 1; i < loc.row + 1; i ++){
+			for(int k = loc.col - 1; k < loc.col + 1; k ++){
+				if(room[i][k] != Game.PLAYER){
+					if(room[i][k] != Game.EMPTY){
+						return room[i][k];
+					}
+				}
+			}
+		}
+		return 0;
+	}
+
 }
