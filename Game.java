@@ -51,6 +51,8 @@ public class Game {
 		if (e == KeyAction.DOWN) {
 			player.move(Location.SOUTH);
 		}
+
+		enemy.makeMove(player);
 	}
 
 	/**
@@ -62,23 +64,26 @@ public class Game {
 	public void handleCommand(String cmd) {
 		if (cmd.contains("go left"))
 			player.move(Location.WEST);
-
-		if (cmd.contains("go right"))
+		else if (cmd.contains("go right"))
 			player.move(Location.EAST);
-		
-		if (cmd.contains("go up"))
+		else if (cmd.contains("go up"))
 			player.move(Location.NORTH);
-
-		if (cmd.contains("go down"))
+		else if (cmd.contains("go down"))
 			player.move(Location.SOUTH);
-		
-		if (cmd.contains("escape!"))
+		else if (cmd.contains("escape!"))
 			player.RandomMove();
-
-		if (cmd.contains("look"))
+		else if (cmd.contains("attack")) {
+			if (player.isAdjacent(enemy))
+				display("You attacked the wumpus");
+		} else if (cmd.contains("love")) {
+			if (player.isAdjacent(enemy))
+				display("You loved the wumpus");
+		} else if (cmd.contains("look"))
 			display("DON'T TOUCH THE WUMPUS!!");
 		else
 			display("I don't know what you mean...");
+
+		enemy.makeMove(player);
 	}
 
 	private void displayWelcome() {

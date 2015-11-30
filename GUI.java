@@ -195,6 +195,8 @@ public class GUI extends javax.swing.JFrame implements KeyListener {
 			game.handleEvent(Game.KeyAction.RIGHT);
 		if (e.getKeyCode() == e.VK_LEFT)
 			game.handleEvent(Game.KeyAction.LEFT);
+		
+		this.roomDisplay.setText(game.getCurrentRoom().toString());
 	}
 
 	private void formKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_formKeyTyped
@@ -206,6 +208,7 @@ public class GUI extends javax.swing.JFrame implements KeyListener {
 			game.handleEvent(Game.KeyAction.RIGHT);
 		if (evt.getKeyCode() == evt.VK_UP)
 			game.handleEvent(Game.KeyAction.LEFT);
+		
 		this.roomDisplay.setText(game.getCurrentRoom().toString());
 	}// GEN-LAST:event_formKeyTyped
 

@@ -3,44 +3,24 @@
  * 
  * @author David
  */
-public class Player {
-	private Room currentRoom; // room player is in
-	private Location loc; // location of the player in the room
+public class Player extends Animate {
 
-	public Player(Room r) {
-		currentRoom = r;
-		loc = new Location(currentRoom.getHeight() / 2, currentRoom.getWidth() / 2);
-		currentRoom.put(loc.row, loc.col, Game.PLAYER);
+	public Player(Room r, Location l) {
+		super(r, l);
+		setLocation(new Location(getRoom().getHeight() / 2, getRoom().getWidth() / 2));
+		getRoom().put(getRow(), getCol(), Game.PLAYER);
 	}
 
-	// returns true if player was able to move in that direction.
-	public boolean move(int direction) {
-		Location moveTo = Location.locationInDirection(loc, direction);
-
-		if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
-			currentRoom.moveElementAt(loc, direction);
-
-			loc = moveTo; // update own location
+	public boolean isAdjacent(Wumpus enemy) {
+		if (Math.abs(getCol() - enemy.getCol()) == 1 && Math.abs(getRow() - enemy.getRow()) == 0)
 			return true;
-		}
+		if (Math.abs(getRow() - enemy.getRow()) == 1 && Math.abs(getCol() - enemy.getCol()) == 0)
+			return true;
+		if (Math.abs(getRow() - enemy.getRow()) == 1 && Math.abs(getCol() - enemy.getCol()) == 1)
+			return true;
 
 		return false;
-	}
 
-	public boolean RandomMove() {
-		for (int i = 0; i < 100; i++) {
-			int direction = ((int) Math.random() * 4);
-			Location moveTo = Location.locationInDirection(loc, direction);
-
-			if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
-				currentRoom.moveElementAt(loc, direction);
-
-				loc = moveTo; // update own location
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 }
