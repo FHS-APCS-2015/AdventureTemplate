@@ -1,5 +1,5 @@
 
-public class Enemy extends Animate {
+public abstract class Enemy extends Animate {
 	Player currentPlayer;
 	
 	public Enemy(Room r) {
