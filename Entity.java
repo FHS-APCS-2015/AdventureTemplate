@@ -1,5 +1,5 @@
 
-public class Entity {
+public abstract class Entity {
 	Location loc;
 	Room currentRoom;
 	
@@ -7,21 +7,20 @@ public class Entity {
 	public Entity(Room r) {
 		currentRoom = r;
 		loc = r.getRandomLocation();
+		
 	}
 
 	public Entity(Room r, Location l) {
 		currentRoom = r;
 		loc = l;
-		currentRoom.put(loc.row, loc.col, Game.EMPTY);
 	}
 	public Entity(Room r, Location l, int gameVar) {
 		currentRoom = r;
 		loc = l;
-		currentRoom.put(loc.row, loc.col, gameVar);
 	}
 	public Entity(Room r, int gameVar) {
 		currentRoom = r;
-		currentRoom.put(loc.row, loc.col, gameVar);
+		loc = r.getRandomLocation();
 	}
 	/*
 	public Entity(){
