@@ -50,4 +50,10 @@ public class Player extends Animate{
 		int rowSum = Math.abs(loc.row - w.getRow());
 		return colSum + rowSum;
 	}
+
+	@Override
+	public String toString() {
+		return "*";
+	}
+	
 }
