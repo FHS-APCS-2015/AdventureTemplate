@@ -8,7 +8,7 @@ public class Player extends Animate{
 	public Player(Room r) {
 		super(r, Game.PLAYER);
 		loc = new Location(currentRoom.getHeight() / 2, currentRoom.getWidth() / 2);
-
+		r.put(loc.row, loc.col, Game.PLAYER);
 	}
 
 	public void moveToward(Entity e){
