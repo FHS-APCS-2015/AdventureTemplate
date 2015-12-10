@@ -105,8 +105,22 @@ public class Room {
 		if (!isInRoom(moveTo))
 			return;
 
+		System.out.println("Source thing: " + room[loc.row][loc.col]);
+		System.out.println("Source location: " + loc);
+		
+		System.out.println("Target thing: " + room[moveTo.row][moveTo.col]);
+		System.out.println("Target location: " + moveTo);
+		
 		room[moveTo.row][moveTo.col] = room[loc.row][loc.col]; // move thing
 		room[loc.row][loc.col] = Game.EMPTY; // old square empty
+
+		System.out.println("Source thing: " + room[loc.row][loc.col]);
+		System.out.println("Source location: " + loc);
+		
+		System.out.println("Target thing: " + room[moveTo.row][moveTo.col]);
+		System.out.println("Target location: " + moveTo);
+		
+    	System.out.println("moveElementAt initiated");
 	}
 
 	// return true if (row, col) is a valid location in the room
