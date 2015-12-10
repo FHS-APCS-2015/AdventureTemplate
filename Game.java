@@ -39,15 +39,19 @@ public class Game {
      */
     public void handleEvent(KeyAction e) {
         if (e == KeyAction.RIGHT) {
+        	System.out.println("right is pressed");
             player.move(Location.EAST);
         }
         if (e == KeyAction.LEFT) {
+        	System.out.println("left is pressed");
             player.move(Location.WEST);
         }
         if (e == KeyAction.UP) {
+        	System.out.println("north is pressed");
             player.move(Location.NORTH);
         }
         if (e == KeyAction.DOWN) {
+        	System.out.println("south is pressed");
             player.move(Location.SOUTH);
         }
     }
