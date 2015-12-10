@@ -25,4 +25,8 @@ public abstract class Enemy extends Animate {
 	public void setPlayer(Player p) {
 		currentPlayer = p;
 	}
+	public void randomMove() {
+		int random = (int) (Math.random() * 4);
+		move(random);
+	}
 }
