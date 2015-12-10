@@ -1,5 +1,5 @@
 
-public class Animate extends Entity {
+public abstract class Animate extends Entity {
 	boolean alive;
 
 	public Animate(Room r) {
@@ -17,9 +17,12 @@ public class Animate extends Entity {
 	}
 
 	public void move(int direction) {
+    	System.out.println("move initiated");
 		Location moveTo = Location.locationInDirection(loc, direction);
 
 		if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
+
+	    	System.out.println("actual moving and updating initiated");
 			currentRoom.moveElementAt(loc, direction);
 
 			loc = moveTo; // update own location
