@@ -76,13 +76,15 @@ public class Wumpus extends Enemy {
 		return false;
 	}
 
-	public void randomMove() {
-		int random = (int) (Math.random() * 4);
-		move(random);
-	}
 
 	// happens when we call the attack command
 	public void disappear() {
 		currentRoom.put(row, col, Game.EMPTY);
 	}
+
+	@Override
+	public String toString() {
+		return "w";
+	}
+	
 }
