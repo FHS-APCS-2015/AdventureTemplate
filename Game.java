@@ -16,10 +16,12 @@ public class Game {
     static final int PLAYER = 1;
     static final int WALL = 2;
     static final int WUMPUS = 3;
+    static final int POPSTAR = 4;
     
     private Room currentRoom;
     private Player player;
     private Wumpus enemy;
+    private PopStar popstar;
    
     private JTextArea display;
 
@@ -28,6 +30,7 @@ public class Game {
         currentRoom = new Room(60, 20);
         player = new Player(currentRoom);
         enemy = new Wumpus(currentRoom);
+        popstar = new PopStar(currentRoom);
         
         displayWelcome();
     }
