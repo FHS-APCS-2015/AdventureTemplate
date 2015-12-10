@@ -8,7 +8,7 @@
  */
 public class Room {
 	private int[][] room; 					// 2d grid for the room
-	private static String[] displaySymbols = { ".", "*", "X", "W" };
+	private static String[] displaySymbols = { ".", "*", "X", "W", "P" };
 	private int width, height;
 	private String longDescription;
 	private String shortDescription;
