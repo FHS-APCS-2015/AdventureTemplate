@@ -20,17 +20,14 @@ public class Game {
     private Room currentRoom;
     private Player player;
     private Wumpus enemy;
-    private Wall[] walls;
    
     private JTextArea display;
 
     public Game(JTextArea display) {
         this.display = display;
         currentRoom = new Room(60, 20);
-        player = new Player(currentRoom, new Location(30, 10));
-        enemy = new Wumpus(currentRoom, new Location(20, 40), player);
-   
-        
+        player = new Player(currentRoom);
+        enemy = new Wumpus(currentRoom);
         
         displayWelcome();
     }
@@ -85,10 +82,10 @@ public class Game {
         	enemy.moveToRandomDirection();
         }
         else if(cmd.contains("everybody clap yo hands")){
-        	int randRow = (int)(Math.random()* currentRoom.getHeight() - 2);
-        	int randCol = (int)(Math.random() * currentRoom.getWidth() - 2);
-        	currentRoom.put(enemy.getRow(), enemy.getRow(), null);
-        	currentRoom.put(randRow, randCol, enemy);
+        	int randRow = (int)(Math.random()*(currentRoom.getWidth() - 1));
+        	int randCol = (int)(Math.random()*(currentRoom.getHeight() - 1));
+        	currentRoom.put(enemy.getRow(), enemy.getCol(), Game.EMPTY);
+        	currentRoom.put(randRow, randCol, Game.WUMPUS);
         }
         else
             display("I don't know what you mean...");

@@ -7,7 +7,7 @@
  * @author David
  */
 public class Room {
-	private Entity[][] room; 					// 2d array of Entities for the room
+	private int[][] room; 					// 2d grid for the room
 	private static String[] displaySymbols = { ".", "*", "X", "W" };
 	private int width, height;
 	private String longDescription;
@@ -16,36 +16,19 @@ public class Room {
 	public Room(int w, int h) {
 		width = w;
 		height = h;
-		room = new Entity[h][w];
+		room = new int[h][w];
 		addBorder();
 	}
 
 	// Adds a border of wall objects around the edges of the room
 	private void addBorder() {
-	  //left wall
-	  for(int i = 0; i < room.length; i ++){
-	    Location l = new Location(i, 0);
-	    room[i][0] = new Wall(this, l);
-	  }
-	  
-	  //right wall
-    for(int i = 0; i < room.length; i ++){
-      Location l = new Location(i, (room[0].length - 1));
-      room[i][room[0].length - 1] = new Wall(this, l);
-    }
-	  
-    //top wall
-    for(int i = 0; i < room[0].length; i ++){
-      Location l = new Location(0, i);
-      room[0][i] = new Wall(this, l);
-    }
-    
-    //bottom wall
-    for(int i = 0; i < room[0].length; i ++){
-      Location l = new Location(room.length - 1, i);
-      room[room.length - 1][i] = new Wall(this, l);
-    }
-	  
+		for (int i = 0; i < room.length; i++) {
+			room[i][0] = room[i][room[0].length - 1] = 2;
+		}
+
+		for (int j = 0; j < room[0].length; j++) {
+			room[0][j] = room[room.length - 1][j] = 2;
+		}
 	}
 
 	/**
@@ -56,38 +39,12 @@ public class Room {
 	 * @param col the column in the room grid
 	 * @return what is at that location in the room.
 	 */
-	public Entity get(int row, int col) {
+	public int get(int row, int col) {
 		if (isInRoom(row, col)) {
 			return room[row][col];
+		} else {
+			return Game.INVALID;
 		}
-		return null;
-	}
-	
-	public Location getWumpusLocation(){
-		Location n = new Location(0, 0);
-		
-		for(int row = 0; row < width; row ++){
-			for(int col = 0; col < height; col ++){
-				Location l = new Location(row, col);
-				if(get(row, col) instanceof Wumpus) return l;
-			}
-		}
-		
-		return n;
-	}
-	
-	public Location getPlayerLocation(){
-		Location n = new Location(0, 0);
-		
-		for(int row = 0; row < width; row ++){
-			for(int col = 0; col < height; col ++){
-				Location l = new Location(row, col);
-				if(get(row, col) instanceof Player) return l;
-			}
-		}
-		
-		return n;
-		
 	}
 
 	/**
@@ -98,9 +55,9 @@ public class Room {
 	 * @param col the column to place the new value
 	 * @param value the value to be placed at (row, col)
 	 */
-	public void put(int row, int col, Entity t) {
-		if (isInRoom(row, col) && room[row][col] == null)
-			room[row][col] = t;
+	public void put(int row, int col, int value) {
+		if (isInRoom(row, col))
+			room[row][col] = value;
 	}
 
 	/**
@@ -111,11 +68,7 @@ public class Room {
 		StringBuilder b = new StringBuilder();
 		for (int r = 0; r < room.length; r++) {
 			for (int c = 0; c < room[0].length; c++) {
-				Entity e = room[r][c];
-				//System.out.println(e);
-				if(e == null) b.append(" ");
-				else
-					b.append(e.getDisplayString());
+				b.append(displaySymbols[room[r][c]]);
 			}
 			b.append("\n");
 		}
@@ -132,7 +85,7 @@ public class Room {
 
 	// return true if (newrow, newcol) is Game.EMPTY
 	boolean isEmpty(int newrow, int newcol) {
-		return get(newrow, newcol) == null;
+		return get(newrow, newcol) == 0;
 	}
 
 	// return true if Location loc is Game.EMPTY
@@ -153,7 +106,7 @@ public class Room {
 			return;
 
 		room[moveTo.row][moveTo.col] = room[loc.row][loc.col]; // move thing
-		room[loc.row][loc.col] = null; // old square empty
+		room[loc.row][loc.col] = Game.EMPTY; // old square empty
 	}
 	
 	
@@ -184,8 +137,8 @@ public class Room {
 	
 	public boolean areAdjacent(Player p, Wumpus w){
 		
-		if((w.loc.getRow() - p.loc.getRow()) == 0 || (w.loc.getCol() - p.loc.getCol()) == 0) {
-			if( Math.abs(w.loc.getRow() - p.getRow()) == 4 || Math.abs(w.loc.getCol() - p.getCol()) == 4) {
+		if((w.getRow() - p.getRow()) == 0 || (w.getCol() - p.getCol()) == 0) {
+			if( Math.abs(w.getRow() - p.getRow()) == 4 || Math.abs(w.getCol() - p.getCol()) == 4) {
 				return true;
 			}
 		}

@@ -4,12 +4,20 @@
  * @author David
  */
 public class Wumpus extends Enemy{
-    
+	static String type = "W";
     public Wumpus(Room r, Location l, Player p) {
         super(r, l, p);
         
     }
     
+	public String getDisplayString() {
+		return type;
+	}
+    
+	public String toString(){
+		return type;
+	}
+	
     // returns true if enemy was able to move in that direction.
     /*public boolean move(int direction) {
         int newrow = loc.row;

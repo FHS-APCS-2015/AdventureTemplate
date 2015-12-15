@@ -1,12 +1,12 @@
 
-public class Animate extends Entity {
+public abstract class Animate extends Entity {
 	boolean alive;
 
 	public Animate(Room r, Location l) {
 		super(r, l);
 	}
 
-	public boolean move(int direction) {
+	/*public boolean move(int direction) {
 		Location moveTo = Location.locationInDirection(loc, direction);
 
 		if (currentRoom.isEmpty(moveTo.row, moveTo.col)) {
@@ -17,6 +17,13 @@ public class Animate extends Entity {
 		}
 
 		return false;
+	}*/
+	
+	public boolean move(int direction){
+	  Location moveTo = Location.locationInDirection(loc, direction);
+	  
+	  setLocation(moveTo);
+	  return false;
 	}
 
 	public void moveToRandomDirection() {
@@ -24,11 +31,6 @@ public class Animate extends Entity {
 			int rand = (int) (Math.random() * 4);
 			move(rand);
 		}
-	}
-
-	//TODO: finish moveTowards(..)
-	public void moveTowards(Location l) {
-
 	}
 
 }
